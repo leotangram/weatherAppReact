@@ -1,23 +1,29 @@
 import React, { useState } from 'react'
 
-function Form() {
+function Form({ queryData }) {
   // State del componente
-  // search = state, saveSearch = setState({})
-  const [search, saveSearch] = useState({
+  // search = state, setSearch = setState({})
+  const [search, setSearch] = useState({
     city: '',
     country: ''
   })
 
   const handleChange = e => {
     // cambiar el state
-    saveSearch({
+    setSearch({
       ...search,
       [e.target.name]: e.target.value
     })
   }
 
+  const checkWeather = e => {
+    e.preventDefault()
+    // Pasar hacia el componente principal la búsqueda del usuario
+    queryData(search)
+  }
+
   return (
-    <form>
+    <form onSubmit={checkWeather}>
       <div className='input-field col s12'>
         <input type='text' name='city' id='city' onChange={handleChange} />
         <label htmlFor='city'>Ciudad:</label>
