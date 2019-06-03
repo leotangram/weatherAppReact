@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './components/Header'
 import Form from './components/Form'
 import Error from './components/Error'
@@ -9,6 +9,20 @@ function App() {
   const [city, setCity] = useState('')
   const [country, setCountry] = useState('')
   const [error, setError] = useState(false)
+  const [result, setResult] = useState({})
+
+  useEffect(() => {
+    // Prevenir ejecución por primera vez
+    if (city === '') return
+    const consultAPI = async () => {
+      const appId = '0e7f3b8a887b8a3da9f8d0f3d6b94411'
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${appId}`
+      const response = await fetch(url)
+      const result = await response.json()
+      setResult(result)
+    }
+    consultAPI()
+  }, [city, country])
 
   const queryData = data => {
     // Validar que ambos campos estén

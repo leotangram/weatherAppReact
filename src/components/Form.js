@@ -38,6 +38,7 @@ function Form({ queryData }) {
           <option value='CR'>Costa Rica</option>
           <option value='ES'>España</option>
           <option value='PE'>Perú</option>
+          <option value='UK'>Reino Unido</option>
         </select>
       </div>
       <div className='input-field col s12'>
