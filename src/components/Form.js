@@ -1,31 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function Form() {
+  // State del componente
+  // search = state, saveSearch = setState({})
+  const [search, saveSearch] = useState({
+    city: '',
+    country: ''
+  })
+
   const handleChange = e => {
     // cambiar el state
-     
+    saveSearch({
+      ...search,
+      [e.target.name]: e.target.value
+    })
   }
 
   return (
     <form>
       <div className='input-field col s12'>
         <input type='text' name='city' id='city' onChange={handleChange} />
-        <label htmlFor="city">Ciudad:</label>
+        <label htmlFor='city'>Ciudad:</label>
       </div>
       <div className='input-fiel col s12'>
-        <select onChange={handleChange} name="country">
-          <option value="">-- Selecciona un país --</option>
-          <option value="US">Estados Unidos</option>
-          <option value="MX">México</option>
-          <option value="CO">Colombia</option>
-          <option value="AR">Argentina</option>
-          <option value="CR">Costa Rica</option>
-          <option value="ES">España</option>
-          <option value="PE">Perú</option>
+        <select onChange={handleChange} name='country'>
+          <option value=''>-- Selecciona un país --</option>
+          <option value='US'>Estados Unidos</option>
+          <option value='MX'>México</option>
+          <option value='CO'>Colombia</option>
+          <option value='AR'>Argentina</option>
+          <option value='CR'>Costa Rica</option>
+          <option value='ES'>España</option>
+          <option value='PE'>Perú</option>
         </select>
       </div>
-      <div className="input-field col s12">
-        <input type="submit" value="Buscar clima" className="waves-effect waves-light btn-large btn-block yellow accent-4"/>
+      <div className='input-field col s12'>
+        <input
+          type='submit'
+          value='Buscar clima'
+          className='waves-effect waves-light btn-large btn-block yellow accent-4'
+        />
       </div>
     </form>
   )
